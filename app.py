@@ -96,6 +96,17 @@ def format_datetime(value, format='medium'):
 app.jinja_env.filters['datetime'] = format_datetime
 
 #----------------------------------------------------------------------------#
+# Helpers.
+#----------------------------------------------------------------------------#
+def upcoming_shows(id):
+  num_upcoming = 0
+  # shows = shows.query.filter_by(venue_id = id).all()
+  # for show in shows:
+  #   if (show.start_time > datetime.now()):
+  #     num_upcoming += 1
+  return num_upcoming
+
+#----------------------------------------------------------------------------#
 # Controllers.
 #----------------------------------------------------------------------------#
 
@@ -111,27 +122,45 @@ def index():
 def venues():
   # TODO: replace with real venues data.
   #       num_shows should be aggregated based on number of upcoming shows per venue.
-  data=[{
-    "city": "San Francisco",
-    "state": "CA",
-    "venues": [{
-      "id": 1,
-      "name": "The Musical Hop",
-      "num_upcoming_shows": 0,
-    }, {
-      "id": 3,
-      "name": "Park Square Live Music & Coffee",
-      "num_upcoming_shows": 1,
-    }]
-  }, {
-    "city": "New York",
-    "state": "NY",
-    "venues": [{
-      "id": 2,
-      "name": "The Dueling Pianos Bar",
-      "num_upcoming_shows": 0,
-    }]
-  }]
+  # data=[{
+  #   "city": "San Francisco",
+  #   "state": "CA",
+  #   "venues": [{
+  #     "id": 1,
+  #     "name": "The Musical Hop",
+  #     "num_upcoming_shows": 0,
+  #   }, {
+  #     "id": 3,
+  #     "name": "Park Square Live Music & Coffee",
+  #     "num_upcoming_shows": 1,
+  #   }]
+  # }, {
+  #   "city": "New York",
+  #   "state": "NY",
+  #   "venues": [{
+  #     "id": 2,
+  #     "name": "The Dueling Pianos Bar",
+  #     "num_upcoming_shows": 0,
+  #   }]
+  # }]
+
+  data = []
+  venues = Venue.query.all()
+  cities = set()
+  # Get unique list of cities
+  for venue in venues:
+    cities.add((venue.city, venue.state))
+  
+  cities = sorted(cities, key=lambda item: item[0])
+  
+  for city in cities:
+    data.append({"city":city[0], "state":city[1], "venues":[]})
+
+  for venue in venues:
+    for record in data:
+      if (venue.city == record['city'] and venue.state == record['state']):
+        record['venues'].append({"id":venue.id, "name":venue.name, "num_upcoming_shows":upcoming_shows(venue.id)})
+
   return render_template('pages/venues.html', areas=data);
 
 @app.route('/venues/search', methods=['POST'])
