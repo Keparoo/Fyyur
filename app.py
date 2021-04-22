@@ -5,7 +5,7 @@
 import json
 import sys
 import dateutil.parser
-from datetime import datetime
+# from datetime import datetime
 import babel
 from flask import Flask, render_template, request, Response, flash, redirect, url_for
 from flask_moment import Moment
@@ -103,10 +103,10 @@ app.jinja_env.filters['datetime'] = format_datetime
 #----------------------------------------------------------------------------#
 def upcoming_shows(id):
   num_upcoming = 0
-  # shows = shows.query.filter_by(venue_id = id).all()
-  # for show in shows:
-  #   if (show.start_time > datetime.now()):
-  #     num_upcoming += 1
+  shows = Show.query.filter_by(venue_id = id).all()
+  for show in shows:
+    if (show.start_time > datetime.now()):
+      num_upcoming += 1
   return num_upcoming
 
 #----------------------------------------------------------------------------#
