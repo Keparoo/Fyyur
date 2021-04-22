@@ -49,8 +49,6 @@ class Venue(db.Model):
   website = db.Column(db.String(120))
   seeking_talent = db.Column(db.Boolean, default=False)
   seeking_description = db.Column(db.Text)
-  # past_shows_count = db.Column(db.Integer, default=0)
-  # upcoming_shows_count = db.Column(db.Integer, default=0)
   shows = db.relationship('Show', backref='venue', lazy=True)
 
 
@@ -62,7 +60,6 @@ class Artist(db.Model):
   city = db.Column(db.String(120), nullable=False)
   state = db.Column(db.String(120), nullable=False)
   phone = db.Column(db.String(120), nullable=False)
-  # genres = db.Column(db.String(120), nullable=False)
   genres = db.Column(db.ARRAY(db.String))
   image_link = db.Column(db.String(500))
   facebook_link = db.Column(db.String(120))
@@ -71,8 +68,6 @@ class Artist(db.Model):
   website = db.Column(db.String(120))
   seeking_venue = db.Column(db.Boolean, default=False)
   seeking_description = db.Column(db.Text)
-  # past_shows_count = db.Column(db.Integer, default=0)
-  # upcoming_shows_count = db.Column(db.Integer, default=0)
   shows = db.relationship('Show', backref='artist', lazy=True)
 
 # TODO Implement Show and Artist models, and complete all model relationships and properties, as a database migration.
@@ -345,6 +340,18 @@ def create_venue_submission():
 def delete_venue(venue_id):
   # TODO: Complete this endpoint for taking a venue_id, and using
   # SQLAlchemy ORM to delete a record. Handle cases where the session commit could fail.
+
+  try:
+    venue = Venue.query.filter_by(id = venue_id).first()
+    db.session.delete(venue)
+    flash('Venue ' + venue.name + ' was successfully deleted!')
+    db.session.commit()
+  except:
+    flash('An error occurred. '+ sys.exc_info()[0]+'. Venue ' + venue.name + ' could not be deleted.')
+    print(sys.exc_info())
+    db.session.rollback()
+  finally:
+    db.session.close()
 
   # BONUS CHALLENGE: Implement a button to delete a Venue on a Venue Page, have it so that
   # clicking that button delete it from the db then redirect the user to the homepage
