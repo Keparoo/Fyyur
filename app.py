@@ -548,6 +548,8 @@ def edit_artist(artist_id):
   #   "image_link": "https://images.unsplash.com/photo-1549213783-8284d0336c4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
   # }
 
+# TODO: populate form with fields from artist with ID <artist_id>
+
   data = Artist.query.filter_by(id=artist_id).first()
 
   artist={
@@ -575,13 +577,34 @@ def edit_artist(artist_id):
   form.seeking_description.process_data(artist['seeking_description'])
   form.image_link.process_data(artist['image_link'])
   
-  # TODO: populate form with fields from artist with ID <artist_id>
   return render_template('forms/edit_artist.html', form=form, artist=artist)
 
 @app.route('/artists/<int:artist_id>/edit', methods=['POST'])
 def edit_artist_submission(artist_id):
   # TODO: take values from the form submitted, and update existing
   # artist record with ID <artist_id> using the new attributes
+
+  try:
+    form = ArtistForm(request.form)
+    artist = Artist.query.filter_by(id=artist_id).first()
+    artist.name = form.name.data
+    artist.genres = form.genres.data
+    artist.city = form.city.data
+    artist.state = form.state.data
+    artist.phone = form.phone.data
+    artist.website = form.website_link.data
+    artist.facebook_link = form.facebook_link.data
+    artist.seeking_venue = True if form.seeking_venue.data == 'Yes' else False
+    artist.seeking_description = form.seeking_description.data
+    artist.image_link = form.image_link.data
+    db.session.commit()
+    flash('Artist ' + request.form['name'] + ' was successfully edited.')
+  except:
+    print(sys.exc_info())
+    flash('An error occurred. Artist ' + request.form['name'] + ' could not be edited.')
+    db.session.rollback()
+  finally:
+    db.session.close()
 
   return redirect(url_for('show_artist', artist_id=artist_id))
 
