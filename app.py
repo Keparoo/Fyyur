@@ -26,9 +26,6 @@ db = setup_db(app)
 # app.config.from_object('config')
 # db = SQLAlchemy(app)
 
-# TODO: connect to a local postgresql database
-# migrate = Migrate(app, db)
-
 #----------------------------------------------------------------------------#
 # Filters.
 #----------------------------------------------------------------------------#
@@ -47,6 +44,7 @@ app.jinja_env.filters['datetime'] = format_datetime
 # Helper methods.
 #----------------------------------------------------------------------------#
 def upcoming_shows(id):
+  # return number of upcoming shows for a venue or artist give the id
   num_upcoming = 0
   shows = Show.query.filter_by(venue_id = id).all()
   for show in shows:
@@ -67,6 +65,8 @@ def index():
 #  ----------------------------------------------------------------
 
 @app.route('/venues')
+# Display list of venues sorted by city
+
 def venues():
   # Data format expected
   # data=[{
@@ -94,7 +94,7 @@ def venues():
   data = []
   venues = Venue.query.all()
 
-  # Get unique list of cities
+  # Create unique list of cities
   cities = set()
   for venue in venues:
     cities.add((venue.city, venue.state))
@@ -114,6 +114,8 @@ def venues():
 
 @app.route('/venues/search', methods=['POST'])
 def search_venues():
+  # Case insensitve search for venues, partial string accepted
+
   # Data format expected:
   # response={
   #   "count": 1,
@@ -139,6 +141,7 @@ def search_venues():
 
 @app.route('/venues/<int:venue_id>')
 def show_venue(venue_id):
+  # List venue page matching venue_id
 
   # Expected data format:
   # data={
@@ -211,6 +214,7 @@ def create_venue_form():
 
 @app.route('/venues/create', methods=['POST'])
 def create_venue_submission():
+  # Create a new venue from form submission, insert into db
 
   try:
     venue = Venue()
@@ -243,6 +247,7 @@ def create_venue_submission():
 
 @app.route('/venues/<venue_id>', methods=['DELETE'])
 def delete_venue(venue_id):
+  # Delete venue matching venue_id
 
   try:
     venue = Venue.query.filter_by(id = venue_id).first()
@@ -264,6 +269,8 @@ def delete_venue(venue_id):
 #  ----------------------------------------------------------------
 @app.route('/artists')
 def artists():
+  # List artists
+
   # Expected data format
   # data=[{
   #   "id": 4,
@@ -286,6 +293,8 @@ def artists():
 
 @app.route('/artists/search', methods=['POST'])
 def search_artists():
+  # Case insensatie search for an artist, partial string accepted
+
   # Expected data format:
   # response={
   #   "count": 1,
@@ -311,6 +320,8 @@ def search_artists():
 
 @app.route('/artists/<int:artist_id>')
 def show_artist(artist_id):
+  # Show the artist page that matches artist_id
+
   # Expected data format
   # data={
   #   "id": 4,
@@ -371,6 +382,8 @@ def show_artist(artist_id):
 #  ----------------------------------------------------------------
 @app.route('/artists/<int:artist_id>/edit', methods=['GET'])
 def edit_artist(artist_id):
+  # Display the current info into fields on artist edit page
+
   form = ArtistForm()
   data = Artist.query.filter_by(id=artist_id).first()
 
@@ -387,6 +400,7 @@ def edit_artist(artist_id):
     "seeking_description": data.seeking_description,
     "image_link": data.image_link
   }
+
   # populate form with current data
   form.name.process_data(artist['name'])
   form.genres.process_data(artist['genres'])
@@ -403,7 +417,6 @@ def edit_artist(artist_id):
 
 @app.route('/artists/<int:artist_id>/edit', methods=['POST'])
 def edit_artist_submission(artist_id):
-
 # Update database record with edited artist info
 
   try:
@@ -432,6 +445,8 @@ def edit_artist_submission(artist_id):
 
 @app.route('/venues/<int:venue_id>/edit', methods=['GET'])
 def edit_venue(venue_id):
+  # Display the current info into fields on venue edit page
+
   form = VenueForm()
   data = Venue.query.filter_by(id=venue_id).first()
 
@@ -449,6 +464,7 @@ def edit_venue(venue_id):
     "seeking_description": data.seeking_description,
     "image_link": data.image_link
   }
+
   # populate form with current data
   form.name.process_data(venue['name'])
   form.genres.process_data(venue['genres'])
@@ -498,6 +514,7 @@ def edit_venue_submission(venue_id):
 
 @app.route('/artists/create', methods=['GET'])
 def create_artist_form():
+  # Create a new artist from form, insert into db
   form = ArtistForm()
   return render_template('forms/new_artist.html', form=form)
 
@@ -527,7 +544,7 @@ def create_artist_submission():
     db.session.rollback()
     print(sys.exc_info())
 
-    # TODO: on unsuccessful db insert, flash an error instead.
+    # on unsuccessful db insert, flash an error instead.
     flash('An error occurred. Artist ' + request.form['name'] + ' could not be listed.')
   finally:
     db.session.close()
@@ -540,7 +557,7 @@ def create_artist_submission():
 
 @app.route('/shows')
 def shows():
-  # displays list of shows at /shows
+  # display a list of shows
 
   # Expected data format
   # data=[{
@@ -581,7 +598,7 @@ def create_shows():
 
 @app.route('/shows/create', methods=['POST'])
 def create_show_submission():
-  # called to create new shows in the db, upon submitting new show listing form
+  # create a new show from form, insert into db
   
   try:
     show = Show()
@@ -590,7 +607,7 @@ def create_show_submission():
     show.start_time = request.form['start_time']
     db.session.add(show)
     db.session.commit()
-    
+
     # on successful db insert, flash success
     flash('Show was successfully listed!')
   except:
