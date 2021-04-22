@@ -2,12 +2,14 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 db = SQLAlchemy()
 
+# Connect to local postgres database defined in config.py
 def setup_db(app):
   app.config.from_object('config')
   db = SQLAlchemy(app)
   migrate = Migrate(app, db)
   return db
 
+# Define database model
 class Venue(db.Model):
   __tablename__ = 'venues'
 
@@ -19,15 +21,11 @@ class Venue(db.Model):
   phone = db.Column(db.String(120), nullable=False)
   image_link = db.Column(db.String(500))
   facebook_link = db.Column(db.String(120))
-
-  # TODO: implement any missing fields, as a database migration using Flask-Migrate
-  # genres = db.Column(db.String(120), nullable=False)
   genres = db.Column(db.ARRAY(db.String))
   website = db.Column(db.String(120))
   seeking_talent = db.Column(db.Boolean, default=False)
   seeking_description = db.Column(db.Text)
   shows = db.relationship('Show', backref='venue', lazy=True)
-
 
 class Artist(db.Model):
   __tablename__ = 'artists'
@@ -40,14 +38,11 @@ class Artist(db.Model):
   genres = db.Column(db.ARRAY(db.String))
   image_link = db.Column(db.String(500))
   facebook_link = db.Column(db.String(120))
-
-  # TODO: implement any missing fields, as a database migration using Flask-Migrate
   website = db.Column(db.String(120))
   seeking_venue = db.Column(db.Boolean, default=False)
   seeking_description = db.Column(db.Text)
   shows = db.relationship('Show', backref='artist', lazy=True)
 
-# TODO Implement Show and Artist models, and complete all model relationships and properties, as a database migration.
 class Show(db.Model):
   __tablename__ = 'shows'
 
