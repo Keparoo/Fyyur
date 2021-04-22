@@ -626,6 +626,36 @@ def edit_venue(venue_id):
     "image_link": "https://images.unsplash.com/photo-1543900694-133f37abaaa5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"
   }
   # TODO: populate form with values from venue with ID <venue_id>
+
+  data = Venue.query.filter_by(id=venue_id).first()
+
+  venue={
+    "id": data.id,
+    "name": data.name,
+    "genres": data.genres,
+    "address": data.address,
+    "city": data.city,
+    "state": data.state,
+    "phone": data.phone,
+    "website": data.website,
+    "facebook_link": data.facebook_link,
+    "seeking_talent": data.seeking_talent,
+    "seeking_description": data.seeking_description,
+    "image_link": data.image_link
+  }
+  # populate form with current data
+  form.name.process_data(venue['name'])
+  form.genres.process_data(venue['genres'])
+  form.address.process_data(venue['address'])
+  form.city.process_data(venue['city'])
+  form.state.process_data(venue['state'])
+  form.phone.process_data(venue['phone'])
+  form.website_link.process_data(venue['website'])
+  form.facebook_link.process_data(venue['facebook_link'])
+  form.seeking_talent.process_data(venue['seeking_talent'])
+  form.seeking_description.process_data(venue['seeking_description'])
+  form.image_link.process_data(venue['image_link'])
+
   return render_template('forms/edit_venue.html', form=form, venue=venue)
 
 @app.route('/venues/<int:venue_id>/edit', methods=['POST'])
