@@ -348,25 +348,24 @@ def create_venue_submission():
 
   return render_template('pages/home.html')
 
-@app.route('/venues/<venue_id>', methods=['DELETE'])
+@app.route('/venues/<venue_id>', methods=['POST'])
 def delete_venue(venue_id):
   # Delete a venue record from the database
 
   try:
     venue = Venue.query.filter_by(id = venue_id).first()
+    name = venue.name
     db.session.delete(venue)
-    flash('Venue ' + venue.name + ' was successfully deleted!')
+    flash('Venue ' + name + ' was successfully deleted!')
     db.session.commit()
   except:
-    flash('An error occurred. '+ sys.exc_info()[0]+'. Venue ' + venue.name + ' could not be deleted.')
+    flash('An error occurred. '+ sys.exc_info()[0]+'. Venue ' + name + ' could not be deleted.')
     print(sys.exc_info())
     db.session.rollback()
   finally:
     db.session.close()
 
-  # BONUS CHALLENGE: Implement a button to delete a Venue on a Venue Page, have it so that
-  # clicking that button delete it from the db then redirect the user to the homepage
-  return None
+  return render_template('pages/home.html')
 
 #  Artists
 #  ----------------------------------------------------------------
