@@ -103,7 +103,9 @@ def upcoming_shows(id):
 
 @app.route('/')
 def index():
-  return render_template('pages/home.html')
+  recentVenues = Venue.query.order_by(db.desc(Venue.id)).limit(9).all()
+  recentArtists = Artist.query.order_by(db.desc(Artist.id)).limit(9).all()
+  return render_template('pages/home.html', venues=recentVenues, artists=recentArtists)
 
 
 #  Venues
