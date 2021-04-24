@@ -549,7 +549,7 @@ def edit_artist_submission(artist_id):
     artist.phone = form.phone.data
     artist.website = form.website_link.data
     artist.facebook_link = form.facebook_link.data
-    artist.seeking_venue = True if form.seeking_venue.data == 'Yes' else False
+    artist.seeking_venue = True if form.seeking_venue.data == True else False
     artist.seeking_description = form.seeking_description.data
     artist.image_link = form.image_link.data
     db.session.commit()
@@ -623,12 +623,13 @@ def edit_venue_submission(venue_id):
     venue = Venue.query.filter_by(id=venue_id).first()
     venue.name = form.name.data
     venue.genres = form.genres.data
+    venue.address = form.address.data
     venue.city = form.city.data
     venue.state = form.state.data
     venue.phone = form.phone.data
     venue.website = form.website_link.data
     venue.facebook_link = form.facebook_link.data
-    venue.seeking_talent = True if form.seeking_talent.data == 'Yes' else False
+    venue.seeking_talent = True if form.seeking_talent.data == True else False
     venue.seeking_description = form.seeking_description.data
     venue.image_link = form.image_link.data
     db.session.commit()
