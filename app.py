@@ -586,6 +586,25 @@ def create_artist_submission():
 
   return render_template('pages/home.html')
 
+@app.route('/artists/<artist_id>', methods=['POST'])
+def delete_artist(artist_id):
+  # Delete an artist record from the database
+
+  try:
+    artist = Artist.query.filter_by(id = artist_id).first()
+    artist_name = artist.name
+    db.session.delete(artist)
+    flash('Artist ' + artist_name + ' was successfully deleted.')
+    db.session.commit()
+  except:
+    flash('An error occurred. Artist ' + artist_name + ' could not be deleted.')
+    print(sys.exc_info())
+    db.session.rollback()
+  finally:
+    db.session.close()
+
+  return render_template('pages/home.html')
+
 #----------------------------------------------------------------------------#
 #  Shows
 #----------------------------------------------------------------------------#

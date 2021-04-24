@@ -78,4 +78,8 @@
 
 <a href="/artists/{{ artist.id }}/edit"><button class="btn btn-primary btn-lg">Edit Artist</button></a>
 
+<form method="POST" action="/artists/{{artist.id}}">
+  <button type="submit" class="btn btn-danger btn-lg">Delete Artist</button>
+</form>
+
 {% endblock %}
