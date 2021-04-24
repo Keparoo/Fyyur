@@ -2,15 +2,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 db = SQLAlchemy()
 
-# Connect to local postgres database defined in config.py
-# def setup_db(app):
-#   app.config.from_object('config')
-#   db.app = app
-#   db.init_app(app)
-#   # db = SQLAlchemy(app)
-#   migrate = Migrate(app, db)
-#   return db
-
 # Define database model
 class Venue(db.Model):
   __tablename__ = 'venues'
@@ -20,10 +11,10 @@ class Venue(db.Model):
   city = db.Column(db.String(120), nullable=False)
   state = db.Column(db.String(120), nullable=False)
   address = db.Column(db.String(120), nullable=False)
-  phone = db.Column(db.String(120), nullable=False)
+  phone = db.Column(db.String(120))
   image_link = db.Column(db.String(500))
   facebook_link = db.Column(db.String(120))
-  genres = db.Column(db.ARRAY(db.String))
+  genres = db.Column(db.ARRAY(db.String), nullable=False)
   website = db.Column(db.String(120))
   seeking_talent = db.Column(db.Boolean, default=False)
   seeking_description = db.Column(db.Text)
@@ -39,8 +30,8 @@ class Artist(db.Model):
   name = db.Column(db.String, nullable=False)
   city = db.Column(db.String(120), nullable=False)
   state = db.Column(db.String(120), nullable=False)
-  phone = db.Column(db.String(120), nullable=False)
-  genres = db.Column(db.ARRAY(db.String))
+  phone = db.Column(db.String(120))
+  genres = db.Column(db.ARRAY(db.String), nullable=False)
   image_link = db.Column(db.String(500))
   facebook_link = db.Column(db.String(120))
   website = db.Column(db.String(120))
