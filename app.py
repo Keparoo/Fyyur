@@ -102,7 +102,7 @@ def venues():
   for venue in venues:
     cities.add((venue.city, venue.state))
   
-  cities = sorted(cities, key=lambda item: item[0])
+  cities = sorted(cities, key=lambda item: item[0].lower())
   
   for city in cities:
     data.append({"city":city[0], "state":city[1], "venues":[]})
@@ -643,7 +643,7 @@ def create_show_submission():
     db.session.add(show)
     db.session.commit()
     flash('Show was successfully listed!')
-    
+
   except:
     db.session.rollback()
     print(sys.exc_info())
