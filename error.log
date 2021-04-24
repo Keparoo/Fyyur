@@ -1,1 +1,365 @@
 
+2021-04-23 22:03:56,065 INFO: errors [in app.py:844]
+2021-04-23 22:04:02,695 ERROR: Exception on / [GET] [in /home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: venues
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "app.py", line 110, in index
+    recentVenues = Venue.query.order_by(db.desc(Venue.id)).limit(9).all()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2685, in all
+    return self._iter().all()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2820, in _iter
+    result = self.session.execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1662, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1520, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 313, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1389, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1748, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1929, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: venues
+[SQL: SELECT venues.id AS venues_id, venues.name AS venues_name, venues.city AS venues_city, venues.state AS venues_state, venues.address AS venues_address, venues.phone AS venues_phone, venues.image_link AS venues_image_link, venues.facebook_link AS venues_facebook_link, venues.genres AS venues_genres, venues.website AS venues_website, venues.seeking_talent AS venues_seeking_talent, venues.seeking_description AS venues_seeking_description 
+FROM venues ORDER BY venues.id DESC
+ LIMIT ? OFFSET ?]
+[parameters: (9, 0)]
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
+2021-04-23 22:04:44,959 ERROR: Exception on /venues [GET] [in /home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: venues
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "app.py", line 146, in venues
+    venues = Venue.query.all()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2685, in all
+    return self._iter().all()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2820, in _iter
+    result = self.session.execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1662, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1520, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 313, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1389, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1748, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1929, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: venues
+[SQL: SELECT venues.id AS venues_id, venues.name AS venues_name, venues.city AS venues_city, venues.state AS venues_state, venues.address AS venues_address, venues.phone AS venues_phone, venues.image_link AS venues_image_link, venues.facebook_link AS venues_facebook_link, venues.genres AS venues_genres, venues.website AS venues_website, venues.seeking_talent AS venues_seeking_talent, venues.seeking_description AS venues_seeking_description 
+FROM venues]
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
+2021-04-23 22:04:47,306 ERROR: Exception on /artists [GET] [in /home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: artists
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "app.py", line 393, in artists
+    artists = Artist.query.order_by(Artist.name).all()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2685, in all
+    return self._iter().all()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2820, in _iter
+    result = self.session.execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1662, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1520, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 313, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1389, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1748, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1929, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: artists
+[SQL: SELECT artists.id AS artists_id, artists.name AS artists_name, artists.city AS artists_city, artists.state AS artists_state, artists.phone AS artists_phone, artists.genres AS artists_genres, artists.image_link AS artists_image_link, artists.facebook_link AS artists_facebook_link, artists.website AS artists_website, artists.seeking_venue AS artists_seeking_venue, artists.seeking_description AS artists_seeking_description 
+FROM artists ORDER BY artists.name]
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
+2021-04-23 22:04:48,265 ERROR: Exception on /shows [GET] [in /home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: shows
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "app.py", line 783, in shows
+    shows = Show.query.all()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2685, in all
+    return self._iter().all()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2820, in _iter
+    result = self.session.execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1662, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1520, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 313, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1389, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1748, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1929, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: shows
+[SQL: SELECT shows.id AS shows_id, shows.start_time AS shows_start_time, shows.venue_id AS shows_venue_id, shows.artist_id AS shows_artist_id 
+FROM shows]
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
+2021-04-23 22:10:01,196 ERROR: Exception on / [GET] [in /home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: venues
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "app.py", line 110, in index
+    recentVenues = Venue.query.order_by(db.desc(Venue.id)).limit(9).all()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2685, in all
+    return self._iter().all()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2820, in _iter
+    result = self.session.execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1662, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1520, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 313, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1389, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1748, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1929, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: venues
+[SQL: SELECT venues.id AS venues_id, venues.name AS venues_name, venues.city AS venues_city, venues.state AS venues_state, venues.address AS venues_address, venues.phone AS venues_phone, venues.image_link AS venues_image_link, venues.facebook_link AS venues_facebook_link, venues.genres AS venues_genres, venues.website AS venues_website, venues.seeking_talent AS venues_seeking_talent, venues.seeking_description AS venues_seeking_description 
+FROM venues ORDER BY venues.id DESC
+ LIMIT ? OFFSET ?]
+[parameters: (9, 0)]
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
+2021-04-23 22:10:04,816 ERROR: Exception on /venues [GET] [in /home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: venues
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "app.py", line 146, in venues
+    venues = Venue.query.all()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2685, in all
+    return self._iter().all()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2820, in _iter
+    result = self.session.execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1662, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1520, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 313, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1389, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1748, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1929, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: venues
+[SQL: SELECT venues.id AS venues_id, venues.name AS venues_name, venues.city AS venues_city, venues.state AS venues_state, venues.address AS venues_address, venues.phone AS venues_phone, venues.image_link AS venues_image_link, venues.facebook_link AS venues_facebook_link, venues.genres AS venues_genres, venues.website AS venues_website, venues.seeking_talent AS venues_seeking_talent, venues.seeking_description AS venues_seeking_description 
+FROM venues]
+(Background on this error at: http://sqlalche.me/e/14/e3q8)
+2021-04-23 22:10:06,603 ERROR: Exception on / [GET] [in /home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: venues
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "app.py", line 110, in index
+    recentVenues = Venue.query.order_by(db.desc(Venue.id)).limit(9).all()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2685, in all
+    return self._iter().all()
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/query.py", line 2820, in _iter
+    result = self.session.execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/orm/session.py", line 1662, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1520, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/sql/elements.py", line 313, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1389, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1748, in _execute_context
+    self._handle_dbapi_exception(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1929, in _handle_dbapi_exception
+    util.raise_(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_context
+    self.dialect.do_execute(
+  File "/home/kep/fullstack/FSND/projects/01_fyyur/starter_code/env/lib/python3.8/site-packages/sqlalchemy/engine/default.py", line 691, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: venues
+[SQL: SELECT venues.id AS venues_id, venues.name AS venues_name, venues.city AS venues_city, venues.state AS venues_state, venues.address AS venues_address, venues.phone AS venues_phone, venues.image_link AS venues_image_link, venues.facebook_link AS venues_facebook_link, venues.genres AS venues_genres, venues.website AS venues_website, venues.seeking_talent AS venues_seeking_talent, venues.seeking_description AS venues_seeking_description 
+FROM venues ORDER BY venues.id DESC
+ LIMIT ? OFFSET ?]
+[parameters: (9, 0)]
+(Background on this error at: http://sqlalche.me/e/14/e3q8)

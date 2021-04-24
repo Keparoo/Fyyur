@@ -14,6 +14,7 @@ import logging
 from logging import Formatter, FileHandler
 from flask_wtf import Form
 from forms import *
+from models import db, Venue, Artist, Show
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -22,55 +23,8 @@ from forms import *
 app = Flask(__name__)
 moment = Moment(app)
 app.config.from_object('config')
-db = SQLAlchemy(app)
-
-# TODO: connect to a local postgresql database
+db.init_app(app)
 migrate = Migrate(app, db)
-#----------------------------------------------------------------------------#
-# Models.
-#----------------------------------------------------------------------------#
-
-class Venue(db.Model):
-  __tablename__ = 'venues'
-
-  id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String, nullable=False)
-  city = db.Column(db.String(120), nullable=False)
-  state = db.Column(db.String(120), nullable=False)
-  address = db.Column(db.String(120), nullable=False)
-  phone = db.Column(db.String(120), nullable=False)
-  image_link = db.Column(db.String(500))
-  facebook_link = db.Column(db.String(120))
-  genres = db.Column(db.ARRAY(db.String))
-  website = db.Column(db.String(120))
-  seeking_talent = db.Column(db.Boolean, default=False)
-  seeking_description = db.Column(db.Text)
-  shows = db.relationship('Show', backref='venue', lazy=True)
-
-
-class Artist(db.Model):
-  __tablename__ = 'artists'
-
-  id = db.Column(db.Integer, primary_key=True)
-  name = db.Column(db.String, nullable=False)
-  city = db.Column(db.String(120), nullable=False)
-  state = db.Column(db.String(120), nullable=False)
-  phone = db.Column(db.String(120), nullable=False)
-  genres = db.Column(db.ARRAY(db.String))
-  image_link = db.Column(db.String(500))
-  facebook_link = db.Column(db.String(120))
-  website = db.Column(db.String(120))
-  seeking_venue = db.Column(db.Boolean, default=False)
-  seeking_description = db.Column(db.Text)
-  shows = db.relationship('Show', backref='artist', lazy=True)
-
-class Show(db.Model):
-  __tablename__ = 'shows'
-
-  id = db.Column(db.Integer, primary_key=True)
-  start_time = db.Column(db.DateTime, nullable=False) 
-  venue_id = db.Column(db.Integer, db.ForeignKey('venues.id'), nullable=False)
-  artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'), nullable=False)
 
 #----------------------------------------------------------------------------#
 # Filters.
@@ -359,7 +313,7 @@ def delete_venue(venue_id):
     flash('Venue ' + name + ' was successfully deleted!')
     db.session.commit()
   except:
-    flash('An error occurred. '+ sys.exc_info()[0]+'. Venue ' + name + ' could not be deleted.')
+    flash('An error occurred. Venue ' + name + ' could not be deleted.')
     print(sys.exc_info())
     db.session.rollback()
   finally:
