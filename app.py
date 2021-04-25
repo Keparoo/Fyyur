@@ -179,7 +179,7 @@ def show_venue(venue_id):
   upcoming_shows = []
 
   # Query upcoming shows and sort by upcoming or past
-  show_list = Show.query.filter_by(venue_id = venue_id).all()
+  show_list = venue.shows
   for item in show_list:
     show = {
       "artist_id": item.artist_id,
@@ -358,7 +358,7 @@ def show_artist(artist_id):
   upcoming_shows = []
 
   # Query database for shows and sort by upcoming or past
-  show_list = Show.query.filter_by(artist_id = artist_id).all()
+  show_list = artist.shows
   for item in show_list:
     show = {
       "venue_id": item.venue_id,
