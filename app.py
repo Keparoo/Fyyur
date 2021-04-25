@@ -6,7 +6,15 @@ import json
 import sys
 import dateutil.parser
 import babel
-from flask import Flask, render_template, request, Response, flash, redirect, url_for
+from flask import (
+Flask, 
+render_template, 
+request, 
+Response, 
+flash, 
+redirect, 
+url_for
+)
 from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -672,9 +680,32 @@ def create_show_submission():
 
   return render_template('pages/home.html')
 
+#----------------------------------------------------------------------------#
+#  Route Error Handling
+#----------------------------------------------------------------------------#
+@app.errorhandler(401)
+def unauthorized_error(error):
+    return render_template('errors/401.html'), 401
+
+@app.errorhandler(403)
+def forbidden_error(error):
+    return render_template('errors/403.html'), 403
+
 @app.errorhandler(404)
 def not_found_error(error):
     return render_template('errors/404.html'), 404
+
+@app.errorhandler(405)
+def invalid_method_error(error):
+    return render_template('errors/405.html'), 405
+
+@app.errorhandler(409)
+def duplicate_resource_error(error):
+    return render_template('errors/409.html'), 409
+
+@app.errorhandler(422)
+def not_processable_error(error):
+    return render_template('errors/422.html'), 422
 
 @app.errorhandler(500)
 def server_error(error):
